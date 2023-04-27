@@ -2,69 +2,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../model/home_model.dart';
+
 class Homecontroller extends GetxController
 {
-  List<RxBool> onDrag=[
-    false.obs,
-    false.obs,
-    false.obs,
-    false.obs,
-    false.obs,
-    false.obs,
-    false.obs,
-    false.obs,
-    false.obs,
-    false.obs,
-  ];
 
-  List images=[
-    "assets/images/black.png",
-    "assets/images/butterfly.png",
-    "assets/images/cat.png",
-    "assets/images/elephant.png",
-    "assets/images/fish.png",
-    "assets/images/hprse.png",
-    "assets/images/parrot.png",
-    "assets/images/peapock.png",
-    "assets/images/pig.png",
-    "assets/images/yellow.png",
-  ];
-  List<Color> colors=[
-    Colors.pink.shade200,
-    Colors.blueGrey.shade400,
-    Colors.yellow,
-    Colors.black,
-    Colors.orange,
-    Colors.red,
-    Colors.blue,
-    Colors.brown,
-    Colors.purple,
-    Colors.green,
+  RxList<Homemodel> qalist=<Homemodel>[
+    Homemodel(image:"assets/images/black.png" ,index:0 ,key: "black",ondrop: false),
+    Homemodel(image:"assets/images/butterfly.png" ,index: 1,key: "Butter",ondrop: false),
+    Homemodel(image:"assets/images/cat.png" ,index: 2,key:"cat" ,ondrop:false ),
+    Homemodel(image:"assets/images/elephant.png" ,index:3 ,key:"ele" ,ondrop:false ),
+    Homemodel(image:"assets/images/fish.png",index: 4,key:"fish" ,ondrop: false),
+    Homemodel(image:"assets/images/hprse.png",index: 5,key:"horse" ,ondrop: false),
+    Homemodel(image:"assets/images/parrot.png",index:6 ,key: "parrot",ondrop: false),
+    Homemodel(image:"assets/images/peapock.png",index: 7,key: "pea",ondrop: false),
+    Homemodel(image:"assets/images/pig.png",index:8 ,key: "pig",ondrop:false ),
+    Homemodel(image:"assets/images/yellow.png",index: 9,key: "yellow",ondrop:false ),
 
-  ];
-  List data1=[
-    'black',
-    'red',
-    'orange',
-    'grey',
-    'blue',
-    'brown',
-    'green',
-    'purple',
-    'pink',
-    'yellow',
-  ];
-  List data2=[
-    'pink',
-    'grey',
-    'yellow',
-    'black',
-    'orange',
-    'red',
-    'blue',
-    'brown',
-    'purple',
-    'green',
-  ];
+
+  ].obs;
+  RxList<Homemodel> anlist=<Homemodel>[
+    Homemodel(color:Colors.pink.shade200 ,index:8 ,key:"pig" ,ondrop: false),
+    Homemodel(color:Colors.blueGrey.shade400,index:3 ,key:"ele" ,ondrop: false),
+    Homemodel(color:Colors.yellow,index: 9,key: "yellow",ondrop: false),
+    Homemodel(color:Colors.black,index: 0,key: "black",ondrop: false),
+    Homemodel(color:Colors.orange, index: 2,key:"cat" ,ondrop: false),
+    Homemodel(color:Colors.red,index: 1,key: "Butter",ondrop: false),
+    Homemodel(color:Colors.blue,index:4 ,key:"fish" ,ondrop: false),
+    Homemodel(color:Colors.brown,index:5 ,key:"horse" ,ondrop: false),
+    Homemodel(color:Colors.purple, index: 7,key:"pea" ,ondrop: false),
+    Homemodel(color:Colors.green, index: 6,key: "parrot",ondrop: false),
+
+  ].obs;
 
 }

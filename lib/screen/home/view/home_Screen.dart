@@ -1,5 +1,6 @@
 
 import 'package:drag_drop_game/screen/home/controller/home_controller.dart';
+import 'package:drag_drop_game/screen/home/model/home_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,78 +24,86 @@ class _homeState extends State<home> {
           centerTitle: true,
           title: Text("Drag - Drop"),
         ),
-        body: Row(
-          children: [
-            Column(
-              children: [
-                Container(
-                  height: 660,
-                  width: 130,
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Draggable(
-                          data: homecontroller.data1[index],
-                          child: Container(
-                            height: 70,
-                            width: 70,
-                            child: Image.asset("${homecontroller.images[index]}"),
-                          ),
-                          feedback: Container(
-                            height: 100,
-                            width: 100,
-                            child: Image.asset("${homecontroller.images[index]}"),
-                          ),
-                          onDragCompleted: () {
-                            homecontroller.images.removeAt(index);
-                          },
-                        ),
-                      );
-                    },
-                    itemCount: homecontroller.images.length,
-                  ),
-                ),
-              ],
-            ),
-            Spacer(),
-            Column(
-              children: [
-                Container(
-                  height: 660,
-                  width: 130,
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DragTarget(
-                          builder: (context, candidateData, rejectedData) {
-                            return Container(
+        body: Obx(
+          () =>  Row(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    height: 720,
+                    width: 130,
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Draggable(
+                            data: homecontroller.qalist[index].key,
+                            child: Container(
                               height: 70,
                               width: 70,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: homecontroller.colors[index],
-                              ),
-                            );
-                          },
-                          onWillAccept: (data) {
-                            return data == homecontroller.data1;
-                          },
-                          onAccept: (data) {
-                            homecontroller.onDrag[index].value = true  ;
-                            print("drag complete");
-                            homecontroller.colors.removeAt(index);
-                          },
-                        ),
-                      );
-                    },
-                    itemCount: homecontroller.colors.length,
+                              child: Image.asset("${homecontroller.qalist[index].image}"),
+                            ),
+                            feedback: Container(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset("${homecontroller.qalist[index].image}"),
+                            ),
+                            onDragCompleted: () {
+                              print(homecontroller.qalist[index].image);
+                               Container();
+                                print(homecontroller.anlist.length);
+                               homecontroller.qalist.removeAt(index);
+                               homecontroller.anlist.removeAt(homecontroller.anlist[index].index!);
+                            },
+
+                          ),
+                        );
+                      },
+                      itemCount: homecontroller.qalist.length,
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              ),
+              Spacer(),
+              Column(
+                children: [
+                  Container(
+                    height: 720,
+                    width: 130,
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DragTarget(
+                            builder: (context, candidateData, rejectedData) {
+                              return Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: homecontroller.anlist[index].color,
+                                ),
+                              );
+                            },
+                            onWillAccept: (data) {
+                              return data == homecontroller.anlist[index].key;
+                            },
+                            onAccept: (data) {
+                             homecontroller.anlist[index]=Homemodel(
+                               image: homecontroller.qalist[index].image,key: homecontroller.anlist[index].key,ondrop: true
+                             );
+
+                            },
+                          ),
+                        );
+                      },
+                      itemCount: homecontroller.anlist.length,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
